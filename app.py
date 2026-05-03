@@ -272,7 +272,11 @@ if predict_btn:
     shap_values = explainer.shap_values(input_scaled)
     
     if len(np.array(shap_values).shape) == 3:
-        sv = shap_values[1][0]
+        shap_arr = np.array(shap_values)
+if len(shap_arr.shape) == 3:
+    sv = shap_arr[1][0]
+else:
+    sv = shap_arr[0]
     else:
         sv = shap_values[0]
     
