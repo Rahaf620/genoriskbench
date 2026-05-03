@@ -278,7 +278,10 @@ if predict_btn:
 
     shap_values = explainer.shap_values(input_scaled)
     shap_arr = np.array(shap_values)
-    sv = shap_arr[1][0] if len(shap_arr.shape) == 3 else shap_arr[0]
+    if isinstance(shap_values, list):
+    sv = np.array(shap_values[1])[0]
+else:
+    sv = np.array(shap_values)[0]
 
     feature_importance = pd.DataFrame({
         'Feature': feature_names,
