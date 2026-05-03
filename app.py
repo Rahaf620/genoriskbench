@@ -276,12 +276,11 @@ if predict_btn:
     st.markdown("## SHAP Explainability — What's Driving This Prediction?")
     st.markdown("<p style='color: #666; font-size: 13px;'>Based on Random Forest model analysis</p>", unsafe_allow_html=True)
 
-    shap_values = explainer.shap_values(input_scaled)
-    shap_arr = np.array(shap_values)
+ shap_values = explainer.shap_values(input_scaled)
     if isinstance(shap_values, list):
-    sv = np.array(shap_values[1])[0]
-else:
-    sv = np.array(shap_values)[0]
+        sv = np.array(shap_values[1])[0]
+    else:
+        sv = np.array(shap_values)[0]
 
     feature_importance = pd.DataFrame({
         'Feature': feature_names,
